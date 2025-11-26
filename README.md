@@ -50,5 +50,5 @@ Forked and updated for RimWorld 1.6 by celphcs30
 
 ## License
 
-See original mod for license details.
+MIT License - See LICENSE file for details.
 
