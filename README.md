@@ -8,10 +8,10 @@ Unbreakable prisoners? Unwaveringly loyal captives? Not anymore. Prisoner Restra
 
 ## Features
 
-* **Restraining table** - Immobilizes prisoners and slowly reduces resistance and will. Hunger and sleep needs drop to negligible levels, ensuring minimal upkeep.
-* **Humiliation cage** - Strips dignity, privacy, and apparel. Reduces prisoner resistance and will at a moderate rate. Effective, though prolonged use risks mental collapse.
-* **Sensory collapser** - High-intensity deprivation chamber that bombards subjects with disorienting stimuli. Triggers early stages of Stockholm syndrome and only affects unwaveringly loyal prisoners. When unwaveringly loyal status is removed, instantly zeros both resistance and will.
-* **Chemfuel bath** - Expedited resistance and will reduction through chemical burns. Requires frequent refueling to maintain effectiveness.
+* **Restraining table** - Immobilizes prisoners and slowly reduces resistance and will. Hunger and sleep needs drop to negligible levels, ensuring minimal upkeep. Can be placed in individual prison cells or barracks.
+* **Humiliation cage** - Strips dignity, privacy, and apparel. Reduces prisoner resistance and will at a moderate rate. Effective, though prolonged use risks mental collapse. Can be placed in individual prison cells or barracks.
+* **Sensory collapser** - High-intensity deprivation chamber that bombards subjects with disorienting stimuli. Triggers early stages of Stockholm syndrome and only affects unwaveringly loyal prisoners. When unwaveringly loyal status is removed, instantly zeros both resistance and will. Can be placed in individual prison cells or barracks.
+* **Chemfuel bath** - Expedited resistance and will reduction through chemical burns. Requires frequent refueling to maintain effectiveness. Can be placed in individual prison cells or barracks.
 
 ## Resistance & Will Reduction
 
@@ -65,6 +65,13 @@ Supported beds:
 - Forces the pawn to get up from the bed once restraints are removed
 - Provides audio feedback when buttons are clicked
 
+**Re-trapping Prevention:**
+- Once a prisoner is released from any restraint device, they are automatically unassigned from that bed
+- Released prisoners are protected from being re-trapped in any restraint device (all types: Restraining table, Humiliation cage, Sensory collapser, Chemfuel bath)
+- This prevents the edge case where released prisoners would return to their assigned bed and get trapped again
+- Works correctly in both individual prison cells and barracks (where multiple beds may be present)
+- Protection is cleared when the prisoner leaves all restraint beds, allowing reuse if needed
+
 ## Mod Settings
 
 Adjustable reduction speed multipliers for each device type (except Sensory Collapser, which uses instant zero):
@@ -84,6 +91,7 @@ Changes take effect immediately without reloading. Access via Options → Mod Se
 * Added Vanilla Nutrient Paste Expanded support (nutrient paste dripper facility)
 * Added Vanilla Chemfuel Expanded support (chemfuel pipe network integration)
 * Implemented proper release system with interrupt handling to prevent hediff reapplication
+* **Re-trapping prevention** - Released prisoners are automatically unassigned and protected from being re-trapped in any restraint device (works in both cells and barracks)
 * Added audio feedback to gizmo buttons
 * Fixed race condition where immobility hediff would be instantly reapplied after removal
 * Updated Harmony dependency configuration

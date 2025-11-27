@@ -22,6 +22,9 @@ namespace ResistanceRestraintsMod
         
         // Static set to track pawns that are being released (to prevent hediff reapplication)
         public static HashSet<Pawn> pawnsBeingReleased = new HashSet<Pawn>();
+        
+        // Static dictionary to track which bed each pawn was released from (to prevent re-trapping)
+        public static Dictionary<Pawn, Building_Bed> pawnsReleasedFromBed = new Dictionary<Pawn, Building_Bed>();
 
         public override void CompTick()
         {
@@ -47,6 +50,19 @@ namespace ResistanceRestraintsMod
                 if (pawnsBeingReleased.Contains(pawn))
                 {
                     continue;
+                }
+
+                // Safety check: If this pawn was released from ANY restraint bed, don't apply hediff and unassign them
+                // This prevents re-trapping in any restraint bed (Restraining Table, Humiliation Cage, Chemfuel Bath, Sensory Collapser)
+                if (pawnsReleasedFromBed.ContainsKey(pawn))
+                {
+                    // Unassign the bed from this pawn to prevent them from coming back
+                    CompAssignableToPawn_Bed assignableComp = bed.GetComp<CompAssignableToPawn_Bed>();
+                    if (assignableComp != null && assignableComp.AssignedPawns.Contains(pawn))
+                    {
+                        assignableComp.TryUnassignPawn(pawn);
+                    }
+                    continue; // Skip applying hediff to prevent re-trapping
                 }
 
                 Hediff immobilityHediff = pawn.health.hediffSet.GetFirstHediffOfDef(HediffDefOf_SilkCircuit.SilkCircuit_Immobile);
@@ -89,6 +105,29 @@ namespace ResistanceRestraintsMod
             
             // Clean up release tracking for pawns no longer in bed
             pawnsBeingReleased.RemoveWhere(pawn => !currentOccupants.Contains(pawn));
+            
+            // Clean up bed release tracking for pawns no longer in any restraint bed
+            List<Pawn> pawnsToRemove = new List<Pawn>();
+            foreach (var kvp in pawnsReleasedFromBed)
+            {
+                if (kvp.Key == null || kvp.Key.Dead || !kvp.Key.Spawned)
+                {
+                    pawnsToRemove.Add(kvp.Key);
+                }
+                else
+                {
+                    // If pawn is not in any restraint bed, clear the tracking
+                    Building_Bed currentBed = kvp.Key.CurrentBed() as Building_Bed;
+                    if (currentBed == null || !IsRestraintBed(currentBed))
+                    {
+                        pawnsToRemove.Add(kvp.Key);
+                    }
+                }
+            }
+            foreach (Pawn pawn in pawnsToRemove)
+            {
+                pawnsReleasedFromBed.Remove(pawn);
+            }
         }
 
         public override void PostDeSpawn(Map map, DestroyMode mode = DestroyMode.Vanish)
@@ -106,6 +145,29 @@ namespace ResistanceRestraintsMod
             }
 
             affectedPawns.Clear();
+            
+            // Clean up release tracking for this specific bed (in case it was destroyed)
+            // Remove any pawns that were released from this bed
+            List<Pawn> pawnsToRemove = new List<Pawn>();
+            foreach (var kvp in pawnsReleasedFromBed)
+            {
+                if (kvp.Value == bed)
+                {
+                    pawnsToRemove.Add(kvp.Key);
+                }
+            }
+            foreach (Pawn pawn in pawnsToRemove)
+            {
+                pawnsReleasedFromBed.Remove(pawn);
+            }
+        }
+        
+        // Helper method to check if a bed is a restraint bed
+        private bool IsRestraintBed(Building_Bed bed)
+        {
+            if (bed == null || bed.def == null) return false;
+            return bed.def.thingCategories != null && 
+                   bed.def.thingCategories.Contains(ThingCategoryDef.Named("BuildingsPrisonerRestraints"));
         }
     }
 

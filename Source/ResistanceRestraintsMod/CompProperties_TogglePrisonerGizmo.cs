@@ -160,7 +160,17 @@ namespace ResistanceRestraintsMod
             if (prisoner == null || !prisoner.IsPrisoner)
                 return;
 
-            // Mark this pawn as being released to prevent hediff reapplication
+            // Unassign the bed from this prisoner to prevent them from returning to it
+            CompAssignableToPawn_Bed assignableComp = bed.GetComp<CompAssignableToPawn_Bed>();
+            if (assignableComp != null && assignableComp.AssignedPawns.Contains(prisoner))
+            {
+                assignableComp.TryUnassignPawn(prisoner);
+            }
+
+            // Mark this pawn as being released from this bed (to prevent re-trapping)
+            CompTortureBed.pawnsReleasedFromBed[prisoner] = bed;
+            
+            // Mark this pawn as being released to prevent hediff reapplication during release process
             CompTortureBed.pawnsBeingReleased.Add(prisoner);
 
             Pawn warden = FindWarden(prisoner);

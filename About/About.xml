@@ -26,14 +26,14 @@ How It Works:
 All restraint devices reduce both resistance (for recruitment) and will (for slavery) proportionally, ensuring both stats reach zero simultaneously. Reduction rates are configurable via Mod Settings. Will reduction requires the Ideology DLC.
 
 Restraint Devices:
-- Restraining Table: Immobilizes prisoners and slowly reduces resistance and will. Minimal upkeep required.
-- Humiliation Cage: Strips dignity and apparel, moderate resistance and will reduction. Effective but risks mental collapse.
-- Sensory Collapser: High-intensity deprivation chamber for unwaveringly loyal prisoners. When unwaveringly loyal status is removed, instantly zeros both resistance and will, then automatically releases the prisoner.
-- Chemfuel Bath: Expedited resistance and will reduction through chemical burns. Requires frequent refueling.
+- Restraining Table: Immobilizes prisoners and slowly reduces resistance and will. Minimal upkeep required. Can be placed in individual prison cells or barracks.
+- Humiliation Cage: Strips dignity and apparel, moderate resistance and will reduction. Effective but risks mental collapse. Can be placed in individual prison cells or barracks.
+- Sensory Collapser: High-intensity deprivation chamber for unwaveringly loyal prisoners. When unwaveringly loyal status is removed, instantly zeros both resistance and will, then automatically releases the prisoner. Can be placed in individual prison cells or barracks.
+- Chemfuel Bath: Expedited resistance and will reduction through chemical burns. Requires frequent refueling. Can be placed in individual prison cells or barracks.
 
 Release System:
 - Sensory Collapser: Automatically releases prisoners when unwaveringly loyal status is removed (instant zero trigger).
-- Other Devices: Manual release via "Release prisoner" button. Wardens remove restraints and free the prisoner, preventing immobility hediff reapplication during the process.
+- Other Devices: Manual release via "Release prisoner" button. Wardens remove restraints and free the prisoner, preventing immobility hediff reapplication during the process. Once released, prisoners are automatically unassigned from the restraint bed and protected from re-trapping in any restraint device (works in both individual cells and barracks).
 
 Integration:
 - Vanilla Nutrient Paste Expanded: All restraint beds accept the nutrient paste dripper facility for automatic feeding via paste network.
