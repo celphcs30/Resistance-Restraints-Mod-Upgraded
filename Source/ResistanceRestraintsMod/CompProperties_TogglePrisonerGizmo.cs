@@ -5,6 +5,7 @@ using RimWorld;
 using UnityEngine;
 using Verse.AI;
 using RimWorld.Planet;
+using Verse.Sound;
 
 namespace ResistanceRestraintsMod
 {
@@ -52,7 +53,11 @@ namespace ResistanceRestraintsMod
                         "Select an unwaveringly loyal prisoner for a warden to escort to this sensory collapser. A successful sensory collapse will trigger the onset of early-stage stockholm syndrome." :
                         "Select a recruitable prisoner or a prisoner with stockholm syndrome for a warden to escort to this restraining device.",
                     icon = ContentFinder<Texture2D>.Get("UI/Buttons/Execute"),
-                    action = ShowPrisonerSelectionMenu
+                    action = () =>
+                    {
+                        SoundDefOf.Click.PlayOneShotOnCamera();
+                        ShowPrisonerSelectionMenu();
+                    }
                 };
             }
             else
@@ -64,7 +69,11 @@ namespace ResistanceRestraintsMod
                         "Cancel the sensory collapse and order a warden to release the prisoner from restraints." :
                         "Order a warden to release the prisoner from their restraints.",
                     icon = ContentFinder<Texture2D>.Get("UI/Buttons/Banish"),
-                    action = ReleasePrisoner
+                    action = () =>
+                    {
+                        SoundDefOf.Click.PlayOneShotOnCamera();
+                        ReleasePrisoner();
+                    }
                 };
             }
         }
@@ -150,6 +159,9 @@ namespace ResistanceRestraintsMod
             Pawn prisoner = bed.CurOccupants.FirstOrDefault();
             if (prisoner == null || !prisoner.IsPrisoner)
                 return;
+
+            // Mark this pawn as being released to prevent hediff reapplication
+            CompTortureBed.pawnsBeingReleased.Add(prisoner);
 
             Pawn warden = FindWarden(prisoner);
 

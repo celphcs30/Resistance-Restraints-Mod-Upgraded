@@ -35,11 +35,23 @@ The chemfuel bath can now be connected to the chemfuel pipe network for automati
 Supported beds:
 * Chemfuel bath
 
+## Release System
+
+Prisoners can be manually released from any restraint device at any time using the "Release prisoner" button on the device's gizmo panel. When clicked, a warden will be assigned to remove the restraints and free the prisoner. The release process:
+
+- Prevents the immobility hediff from being reapplied during release
+- Forces the pawn to get up from the bed once restraints are removed
+- Works on all restraint device types (Restraining table, Humiliation cage, Sensory collapser, Chemfuel bath)
+- Provides audio feedback when buttons are clicked
+
 ## Changes from Original
 
 * Updated for RimWorld 1.6 only (removed support for RimWorld 1.5)
 * Added Vanilla Nutrient Paste Expanded support (nutrient paste dripper facility)
 * Added Vanilla Chemfuel Expanded support (chemfuel pipe network integration)
+* Implemented proper release system with interrupt handling to prevent hediff reapplication
+* Added audio feedback to gizmo buttons
+* Fixed race condition where immobility hediff would be instantly reapplied after removal
 * Updated Harmony dependency configuration
 * Cleaned up mod metadata and naming
 

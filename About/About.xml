@@ -34,6 +34,9 @@ All restraint beds can now accept the nutrient paste dripper facility. Place a d
 Vanilla Chemfuel Expanded Support:
 The chemfuel bath can now be connected to the chemfuel pipe network for automatic refueling.
 
+Release System:
+Prisoners can be manually released from any restraint device using the "Release prisoner" button. Wardens will automatically remove restraints and free the prisoner, allowing them to move normally.
+
 Original mod by SilkCircuit.
 Forked and updated for RimWorld 1.6 by celphcs30.</description>
   <modVersion IgnoreIfNoMatchingField="True">1.6</modVersion>

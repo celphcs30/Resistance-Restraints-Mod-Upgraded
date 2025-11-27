@@ -19,6 +19,9 @@ namespace ResistanceRestraintsMod
         private CompRefuelable compRefuelable => this.parent.GetComp<CompRefuelable>();
         private CompPowerTrader compPowerTrader => this.parent.GetComp<CompPowerTrader>();
         private HashSet<Pawn> affectedPawns = new HashSet<Pawn>();
+        
+        // Static set to track pawns that are being released (to prevent hediff reapplication)
+        public static HashSet<Pawn> pawnsBeingReleased = new HashSet<Pawn>();
 
         public override void CompTick()
         {
@@ -39,6 +42,12 @@ namespace ResistanceRestraintsMod
             foreach (Pawn pawn in currentOccupants)
             {
                 if (pawn == null || pawn.Dead || pawn.Downed) continue;
+
+                // Skip if this pawn is being released
+                if (pawnsBeingReleased.Contains(pawn))
+                {
+                    continue;
+                }
 
                 Hediff immobilityHediff = pawn.health.hediffSet.GetFirstHediffOfDef(HediffDefOf_SilkCircuit.SilkCircuit_Immobile);
 
@@ -73,13 +82,18 @@ namespace ResistanceRestraintsMod
                         pawn.health.RemoveHediff(immobilityHediff);
                     }
                     affectedPawns.Remove(pawn);
+                    // Also clean up release tracking if pawn left the bed
+                    pawnsBeingReleased.Remove(pawn);
                 }
             }
+            
+            // Clean up release tracking for pawns no longer in bed
+            pawnsBeingReleased.RemoveWhere(pawn => !currentOccupants.Contains(pawn));
         }
 
-        public override void PostDeSpawn(Map map)
+        public override void PostDeSpawn(Map map, DestroyMode mode = DestroyMode.Vanish)
         {
-            base.PostDeSpawn(map);
+            base.PostDeSpawn(map, mode);
 
             // Ensure any pawn still tracked gets the hediff removed
             foreach (Pawn pawn in affectedPawns)

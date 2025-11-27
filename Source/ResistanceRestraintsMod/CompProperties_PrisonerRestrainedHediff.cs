@@ -98,9 +98,9 @@ namespace ResistanceRestraintsMod
             }
         }
 
-        public override void PostDeSpawn(Map map)
+        public override void PostDeSpawn(Map map, DestroyMode mode = DestroyMode.Vanish)
         {
-            base.PostDeSpawn(map);
+            base.PostDeSpawn(map, mode);
 
             // Remove all hediffs that are set to be removed on exit
             foreach (Pawn pawn in affectedPawns.Keys)
