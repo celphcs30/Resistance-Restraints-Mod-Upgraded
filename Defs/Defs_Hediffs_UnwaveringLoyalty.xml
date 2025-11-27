@@ -391,13 +391,6 @@
 		<cureAllAtOnceIfCuredByItem>false</cureAllAtOnceIfCuredByItem>
 		<everCurableByItem>false</everCurableByItem>
 		<comps>
-			<li Class="HediffCompProperties_Discoverable">
-				<sendLetterWhenDiscovered>true</sendLetterWhenDiscovered>
-				<discoverLetterLabel>Unwaveringly loyal: {0}</discoverLetterLabel>
-				<discoverLetterText>{PAWN} shook off the delusion like a bad hangover. Their wavering loyalty is gone, and they are no longer recruitable—unless you collapse their senses again.\n\nThe forced devotion, the twisted admiration—it’s all faded. They see clearly now, and they don’t like what they see. No more obedience, no more trust—just the cold realization that they were nothing more than a pawn in your game.\n\nGuess that programming didn’t stick. Try harder next time.</discoverLetterText>
-				<messageType>NegativeEvent</messageType>
-				<letterType>NegativeEvent</letterType>
-			</li>
 			<li Class="HediffCompProperties_SeverityPerDay">
 				<severityPerDayRange>-10~-20</severityPerDayRange>
 				<showHoursToRecover>true</showHoursToRecover>
