@@ -48,17 +48,23 @@ namespace ResistanceRestraintsMod
                     pawn.guest.Recruitable = true;
                 }
 
-                // Reset resistance to 0 (removes any remaining barrier)
-                if (pawn.guest.resistance > 0)
-                {
-                    pawn.guest.resistance = 0;
-                }
-
                 // Ensure they remain a prisoner at the end
                 pawn.guest.SetGuestStatus(Faction.OfPlayer, GuestStatus.Prisoner);
 
                 // Choose a random final resistance value within the range
                 float finalResistance = Rand.Range(Props.finalResistanceMin, Props.finalResistanceMax);
+                
+                // INSTANT ZERO: Set both resistance and will to 0 when wavering loyalty triggers
+                // This happens BEFORE setting the final resistance, so we zero them first
+                pawn.guest.resistance = 0;
+                
+                // Reset will to 0 for slavery mechanics (if Ideology is active)
+                if (ModsConfig.IdeologyActive)
+                {
+                    pawn.guest.will = 0;
+                }
+                
+                // Then set the final resistance (which is 0-0 for sensory collapser, so stays 0)
                 pawn.guest.resistance = finalResistance;
 
             }

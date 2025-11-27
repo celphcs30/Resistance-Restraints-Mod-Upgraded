@@ -20,22 +20,27 @@
     <li>VanillaExpanded.VNutrientE</li>
     <li>VanillaExpanded.VChemfuelE</li>
   </loadAfter>
-  <description>Unbreakable prisoners? Unwaveringly loyal captives? Not anymore. Prisoner Restraints introduces new methods to break down resistance and a progression system that can make unwaveringly loyal prisoners recruitable.
+  <description>Break down prisoner resistance and will with specialized restraint devices. Make unwaveringly loyal captives recruitable and prepare prisoners for recruitment or enslavement.
 
-Features:
-- Restraining table: Immobilizes prisoners and slowly reduces resistance
-- Humiliation cage: Strips dignity and apparel, moderate resistance reduction
-- Sensory collapser: High-intensity deprivation chamber for unwaveringly loyal prisoners
-- Chemfuel bath: Expedited resistance reduction through chemical burns
+How It Works:
+All restraint devices reduce both resistance (for recruitment) and will (for slavery) proportionally, ensuring both stats reach zero simultaneously. Reduction rates are configurable via Mod Settings. Will reduction requires the Ideology DLC.
 
-Vanilla Nutrient Paste Expanded Support:
-All restraint beds can now accept the nutrient paste dripper facility. Place a dripper adjacent to the bed head to automatically feed prisoners via the paste network.
-
-Vanilla Chemfuel Expanded Support:
-The chemfuel bath can now be connected to the chemfuel pipe network for automatic refueling.
+Restraint Devices:
+- Restraining Table: Immobilizes prisoners and slowly reduces resistance and will. Minimal upkeep required.
+- Humiliation Cage: Strips dignity and apparel, moderate resistance and will reduction. Effective but risks mental collapse.
+- Sensory Collapser: High-intensity deprivation chamber for unwaveringly loyal prisoners. When unwaveringly loyal status is removed, instantly zeros both resistance and will, then automatically releases the prisoner.
+- Chemfuel Bath: Expedited resistance and will reduction through chemical burns. Requires frequent refueling.
 
 Release System:
-Prisoners can be manually released from any restraint device using the "Release prisoner" button. Wardens will automatically remove restraints and free the prisoner, allowing them to move normally.
+- Sensory Collapser: Automatically releases prisoners when unwaveringly loyal status is removed (instant zero trigger).
+- Other Devices: Manual release via "Release prisoner" button. Wardens remove restraints and free the prisoner, preventing immobility hediff reapplication during the process.
+
+Integration:
+- Vanilla Nutrient Paste Expanded: All restraint beds accept the nutrient paste dripper facility for automatic feeding via paste network.
+- Vanilla Chemfuel Expanded: Chemfuel bath connects to chemfuel pipe network for automatic refueling.
+
+Mod Settings:
+Adjustable reduction speed multipliers for Restraining Table, Humiliation Cage, and Chemfuel Bath. Changes take effect immediately without reloading.
 
 Original mod by SilkCircuit.
 Forked and updated for RimWorld 1.6 by celphcs30.</description>

@@ -84,9 +84,11 @@
     <Compile Include="HediffCompProperties_TriggerOnMinSeverity.cs" />
     <Compile Include="HediffCompProperties_WaterSplash.cs" />
     <Compile Include="JobDriver_RemoveImmobility.cs" />
+    <Compile Include="ModSettings_ResistanceRestraints.cs" />
     <Compile Include="PlaceWorker_OnlyInPrisonCell.cs" />
     <Compile Include="PlaceWorker_PreventAdjacentOverlap.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ResistanceRestraintsMod.cs" />
     <Compile Include="WorkGiver_Warden_RemoveImmobility.cs" />
     <Compile Include="WorkGiver_Warden_StripPawnTortureBed.cs" />
     <Compile Include="WorkGiver_Warden_TakeToTortureBed.cs" />

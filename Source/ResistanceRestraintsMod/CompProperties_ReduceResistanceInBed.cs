@@ -21,14 +21,64 @@ namespace ResistanceRestraintsMod
                     {
                         float reductionAmount = Props.baseReduction;
 
+                        // Apply mod settings multiplier based on device type
+                        string defName = parent.def.defName;
+                        if (ModSettings_ResistanceRestraints.Settings != null)
+                        {
+                            if (defName == "SilkCircuit_TortureBed")
+                            {
+                                reductionAmount *= ModSettings_ResistanceRestraints.Settings.restrainingTableMultiplier;
+                            }
+                            else if (defName == "SilkCircuit_PrisonerCage")
+                            {
+                                reductionAmount *= ModSettings_ResistanceRestraints.Settings.humiliationCageMultiplier;
+                            }
+                            else if (defName == "SilkCircuit_ChemfuelBath")
+                            {
+                                reductionAmount *= ModSettings_ResistanceRestraints.Settings.chemfuelBathMultiplier;
+                            }
+                            // Sensory collapser uses instant zero, so no multiplier needed
+                        }
+
                         // Additional reduction if pawn is immobilized
                         if (pawn.health.hediffSet.HasHediff(HediffDef.Named("SilkCircuit_Immobile")))
                         {
                             reductionAmount *= Props.immobileMultiplier;
                         }
 
-                        // Apply resistance reduction (ensuring it never goes below 0)
-                        pawn.guest.resistance = Mathf.Max(pawn.guest.resistance - reductionAmount, 0f);
+                        // Get current values
+                        float currentResistance = Mathf.Max(pawn.guest.resistance, 0f);
+                        float currentWill = 0f;
+                        bool hasWill = false;
+                        
+                        // Check if Ideology is active and pawn has will (for slavery)
+                        if (ModsConfig.IdeologyActive && pawn.guest != null)
+                        {
+                            currentWill = Mathf.Max(pawn.guest.will, 0f);
+                            hasWill = currentWill > 0f;
+                        }
+
+                        // Calculate proportional reduction so both reach 0 at the same time
+                        float totalToReduce = currentResistance + currentWill;
+                        
+                        if (totalToReduce > 0f)
+                        {
+                            // Calculate proportional reductions
+                            float resistancePortion = currentResistance / totalToReduce;
+                            float willPortion = currentWill / totalToReduce;
+                            
+                            // Apply resistance reduction (ensuring it never goes below 0)
+                            float resistanceReduction = reductionAmount * resistancePortion;
+                            pawn.guest.resistance = Mathf.Max(currentResistance - resistanceReduction, 0f);
+                            
+                            // Apply will reduction if Ideology is active and pawn has will
+                            if (hasWill && ModsConfig.IdeologyActive)
+                            {
+                                float willReduction = reductionAmount * willPortion;
+                                pawn.guest.will = Mathf.Max(currentWill - willReduction, 0f);
+                            }
+                        }
+                        // If both are already at 0, do nothing (no reduction needed)
                     }
                 }
             }

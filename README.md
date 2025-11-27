@@ -8,10 +8,24 @@ Unbreakable prisoners? Unwaveringly loyal captives? Not anymore. Prisoner Restra
 
 ## Features
 
-* **Restraining table** - Immobilizes prisoners and slowly reduces resistance. Hunger and sleep needs drop to negligible levels, ensuring minimal upkeep.
-* **Humiliation cage** - Strips dignity, privacy, and apparel. Reduces prisoner resistance at a moderate rate. Effective, though prolonged use risks mental collapse.
-* **Sensory collapser** - High-intensity deprivation chamber that bombards subjects with disorienting stimuli. Triggers early stages of Stockholm syndrome and only affects unwaveringly loyal prisoners.
-* **Chemfuel bath** - Expedited resistance reduction through chemical burns. Requires frequent refueling to maintain effectiveness.
+* **Restraining table** - Immobilizes prisoners and slowly reduces resistance and will. Hunger and sleep needs drop to negligible levels, ensuring minimal upkeep.
+* **Humiliation cage** - Strips dignity, privacy, and apparel. Reduces prisoner resistance and will at a moderate rate. Effective, though prolonged use risks mental collapse.
+* **Sensory collapser** - High-intensity deprivation chamber that bombards subjects with disorienting stimuli. Triggers early stages of Stockholm syndrome and only affects unwaveringly loyal prisoners. When unwaveringly loyal status is removed, instantly zeros both resistance and will.
+* **Chemfuel bath** - Expedited resistance and will reduction through chemical burns. Requires frequent refueling to maintain effectiveness.
+
+## Resistance & Will Reduction
+
+All restraint devices reduce both **resistance** (for recruitment) and **will** (for slavery) proportionally, ensuring both stats reach zero at the same time. This makes prisoners ready for either recruitment or enslavement.
+
+**How it works:**
+- The reduction rate is calculated proportionally based on current resistance and will values
+- If a prisoner has 85 will and 14.1 resistance, both will be reduced at proportional rates so they reach zero simultaneously
+- The immobile multiplier applies to the total reduction, then split proportionally between both stats
+- **Will reduction requires the Ideology DLC** - if Ideology is not active, only resistance is reduced
+
+**Sensory Collapser special behavior:**
+- When the unwaveringly loyal status is removed (Stockholm syndrome triggers), both resistance and will are instantly set to zero
+- The prisoner is automatically released at this moment (no manual release needed)
 
 ## Requirements
 
@@ -37,16 +51,36 @@ Supported beds:
 
 ## Release System
 
-Prisoners can be manually released from any restraint device at any time using the "Release prisoner" button on the device's gizmo panel. When clicked, a warden will be assigned to remove the restraints and free the prisoner. The release process:
+**Sensory Collapser (Automatic):**
+- Automatically releases prisoners when unwaveringly loyal status is removed
+- This occurs when the device successfully triggers Stockholm syndrome (wavering loyalty hediff)
+- Both resistance and will are instantly set to zero at this moment
+- No manual intervention required
 
-- Prevents the immobility hediff from being reapplied during release
+**Other Devices (Manual):**
+- Restraining table, Humiliation cage, and Chemfuel bath require manual release
+- Use the "Release prisoner" button on the device's gizmo panel
+- A warden will be assigned to remove restraints and free the prisoner
+- The release process prevents the immobility hediff from being reapplied during release
 - Forces the pawn to get up from the bed once restraints are removed
-- Works on all restraint device types (Restraining table, Humiliation cage, Sensory collapser, Chemfuel bath)
 - Provides audio feedback when buttons are clicked
+
+## Mod Settings
+
+Adjustable reduction speed multipliers for each device type (except Sensory Collapser, which uses instant zero):
+
+- **Restraining Table Multiplier**: 0.1x to 5.0x (default: 1.0x)
+- **Humiliation Cage Multiplier**: 0.1x to 5.0x (default: 1.0x)
+- **Chemfuel Bath Multiplier**: 0.1x to 5.0x (default: 1.0x)
+
+Changes take effect immediately without reloading. Access via Options → Mod Settings → Prisoner Restraints.
 
 ## Changes from Original
 
 * Updated for RimWorld 1.6 only (removed support for RimWorld 1.5)
+* **Added will reduction for slavery mechanics** - all devices now reduce both resistance and will proportionally
+* **Sensory collapser instant zero and auto-release** - when unwaveringly loyal is removed, instantly zeros both resistance and will, then automatically releases the prisoner
+* **Mod Settings** - configurable reduction speed multipliers for Restraining Table, Humiliation Cage, and Chemfuel Bath
 * Added Vanilla Nutrient Paste Expanded support (nutrient paste dripper facility)
 * Added Vanilla Chemfuel Expanded support (chemfuel pipe network integration)
 * Implemented proper release system with interrupt handling to prevent hediff reapplication
