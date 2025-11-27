@@ -20,7 +20,7 @@ Unbreakable prisoners? Unwaveringly loyal captives? Not anymore. Prisoner Restra
 
 ## Vanilla Nutrient Paste Expanded Support
 
-All restraint beds can now be connected to the paste network to automatically feed prisoners. This integration is added automatically when [Vanilla Nutrient Paste Expanded](https://steamcommunity.com/sharedfiles/filedetails/?id=2920385763) is installed.
+All restraint beds can now accept the nutrient paste dripper facility. Place a dripper adjacent to the bed head to automatically feed prisoners via the paste network. This integration is added automatically when [Vanilla Nutrient Paste Expanded](https://steamcommunity.com/sharedfiles/filedetails/?id=2920385763) is installed.
 
 Supported beds:
 * Restraining table
@@ -28,10 +28,18 @@ Supported beds:
 * Sensory collapser
 * Chemfuel bath
 
+## Vanilla Chemfuel Expanded Support
+
+The chemfuel bath can now be connected to the chemfuel pipe network for automatic refueling. This integration is added automatically when [Vanilla Chemfuel Expanded](https://steamcommunity.com/sharedfiles/filedetails/?id=2792917473) is installed.
+
+Supported beds:
+* Chemfuel bath
+
 ## Changes from Original
 
 * Updated for RimWorld 1.6 only (removed support for RimWorld 1.5)
-* Added Vanilla Nutrient Paste Expanded support (paste network integration)
+* Added Vanilla Nutrient Paste Expanded support (nutrient paste dripper facility)
+* Added Vanilla Chemfuel Expanded support (chemfuel pipe network integration)
 * Updated Harmony dependency configuration
 * Cleaned up mod metadata and naming
 

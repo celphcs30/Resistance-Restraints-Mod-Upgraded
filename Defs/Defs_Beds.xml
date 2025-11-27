@@ -70,6 +70,11 @@
 					</li>
 				</hediffsToApply>
 			</li>
+			<li Class="CompProperties_AffectedByFacilities" MayRequire="VanillaExpanded.VNutrientE">
+				<linkableFacilities>
+					<li>VNPE_NutrientPasteDripper</li>
+				</linkableFacilities>
+			</li>
 		</comps>
 		<costStuffCount>65</costStuffCount>
 		<stuffCategories>
@@ -174,6 +179,11 @@
 					<li>SilkCircuit_StockholmSyndrome</li>
 					<li>SilkCircuit_WaveringLoyalty</li>
 				</includedHediffs>
+			</li>
+			<li Class="CompProperties_AffectedByFacilities" MayRequire="VanillaExpanded.VNutrientE">
+				<linkableFacilities>
+					<li>VNPE_NutrientPasteDripper</li>
+				</linkableFacilities>
 			</li>
 		</comps>
 		<costStuffCount>120</costStuffCount>
@@ -351,6 +361,11 @@
 				<glowRadius>2</glowRadius>
 				<glowColor>(80,112,180,0)</glowColor>
 			</li>
+			<li Class="CompProperties_AffectedByFacilities" MayRequire="VanillaExpanded.VNutrientE">
+				<linkableFacilities>
+					<li>VNPE_NutrientPasteDripper</li>
+				</linkableFacilities>
+			</li>
 		</comps>
 		<costStuffCount>100</costStuffCount>
 		<stuffCategories>
@@ -515,6 +530,11 @@
 						<!-- Removed only if pawn is NOT immobile -->
 					</li>
 				</hediffsToApply>
+			</li>
+			<li Class="CompProperties_AffectedByFacilities" MayRequire="VanillaExpanded.VNutrientE">
+				<linkableFacilities>
+					<li>VNPE_NutrientPasteDripper</li>
+				</linkableFacilities>
 			</li>
 		</comps>
 		<costList>

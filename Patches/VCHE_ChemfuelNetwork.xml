@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+  <Operation Class="PatchOperationFindMod">
+    <mods>
+      <li>VanillaExpanded.VChemfuelE</li>
+    </mods>
+    <match Class="PatchOperationAdd">
+      <xpath>/Defs/ThingDef[defName="SilkCircuit_ChemfuelBath"]/comps</xpath>
+      <value>
+        <li Class="PipeSystem.CompProperties_Resource">
+          <pipeNet>VCHE_ChemfuelNet</pipeNet>
+        </li>
+      </value>
+    </match>
+  </Operation>
+</Patch>
+

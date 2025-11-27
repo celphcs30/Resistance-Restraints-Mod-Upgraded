@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Patch>
+  <!-- Add CompProperties_AffectedByFacilities to restraint beds so they can accept the nutrient paste dripper facility -->
   <Operation Class="PatchOperationFindMod">
     <mods>
       <li>VanillaExpanded.VNutrientE</li>
@@ -7,13 +8,15 @@
     <match Class="PatchOperationAdd">
       <xpath>/Defs/ThingDef[defName="SilkCircuit_TortureBed"]/comps</xpath>
       <value>
-        <li Class="PipeSystem.CompProperties_Resource">
-          <pipeNet>VNPE_NutrientPasteNet</pipeNet>
+        <li Class="CompProperties_AffectedByFacilities">
+          <linkableFacilities>
+            <li>VNPE_NutrientPasteDripper</li>
+          </linkableFacilities>
         </li>
       </value>
     </match>
   </Operation>
-
+  
   <Operation Class="PatchOperationFindMod">
     <mods>
       <li>VanillaExpanded.VNutrientE</li>
@@ -21,13 +24,15 @@
     <match Class="PatchOperationAdd">
       <xpath>/Defs/ThingDef[defName="SilkCircuit_PrisonerCage"]/comps</xpath>
       <value>
-        <li Class="PipeSystem.CompProperties_Resource">
-          <pipeNet>VNPE_NutrientPasteNet</pipeNet>
+        <li Class="CompProperties_AffectedByFacilities">
+          <linkableFacilities>
+            <li>VNPE_NutrientPasteDripper</li>
+          </linkableFacilities>
         </li>
       </value>
     </match>
   </Operation>
-
+  
   <Operation Class="PatchOperationFindMod">
     <mods>
       <li>VanillaExpanded.VNutrientE</li>
@@ -35,13 +40,15 @@
     <match Class="PatchOperationAdd">
       <xpath>/Defs/ThingDef[defName="SilkCircuit_SensoryCollapser"]/comps</xpath>
       <value>
-        <li Class="PipeSystem.CompProperties_Resource">
-          <pipeNet>VNPE_NutrientPasteNet</pipeNet>
+        <li Class="CompProperties_AffectedByFacilities">
+          <linkableFacilities>
+            <li>VNPE_NutrientPasteDripper</li>
+          </linkableFacilities>
         </li>
       </value>
     </match>
   </Operation>
-
+  
   <Operation Class="PatchOperationFindMod">
     <mods>
       <li>VanillaExpanded.VNutrientE</li>
@@ -49,8 +56,10 @@
     <match Class="PatchOperationAdd">
       <xpath>/Defs/ThingDef[defName="SilkCircuit_ChemfuelBath"]/comps</xpath>
       <value>
-        <li Class="PipeSystem.CompProperties_Resource">
-          <pipeNet>VNPE_NutrientPasteNet</pipeNet>
+        <li Class="CompProperties_AffectedByFacilities">
+          <linkableFacilities>
+            <li>VNPE_NutrientPasteDripper</li>
+          </linkableFacilities>
         </li>
       </value>
     </match>
